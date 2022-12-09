@@ -39,7 +39,7 @@ const client = {
   ...rootProperties,
   resolve: {
     alias: {
-      components: path.resolve(__dirname, "./src/client/client/components/"),
+      components: path.resolve(__dirname, "./src/client/components/"),
       theme: path.resolve(__dirname, "./src/client/theme/"),
       hooks: path.resolve(__dirname, "./src/client/hooks/"),
       pages: path.resolve(__dirname, "./src/client/pages/"),
