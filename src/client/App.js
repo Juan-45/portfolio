@@ -1,17 +1,19 @@
+import MainContainer from "./layout/MainContainer";
 import PageRender from "components/PageRender";
 import { Link } from "react-router-dom";
-import Page1 from "pages/Page1";
+import Welcome from "./components/Welcome";
 import Page2 from "pages/Page2";
 import Page3 from "pages/Page3";
 import { Grid, Typography } from "@mui/material";
-import theme from "./theme/theme";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import getAppTheme from "./theme/getAppTheme";
 
 const App = () => {
   const navigation = [
     {
       label: "Página 1",
-      path: "",
-      element: <Page1 />,
+      path: "/",
+      element: <Welcome />,
     },
     {
       label: "Página 2",
@@ -25,15 +27,20 @@ const App = () => {
     },
   ];
 
+  const theme = getAppTheme();
+
   return (
-    <div style={{ height: "100vh" }}>
-      <div>
-        <Link to={"/"}>{navigation[0].label}</Link>
+    <ThemeProvider theme={theme}>
+      <CssBaseline enableColorScheme />
+      <MainContainer>
+        {/*   <div>
+        <Link to={navigation[0].path}>{navigation[0].label}</Link>
         <Link to={navigation[1].path}>{navigation[1].label}</Link>
         <Link to={navigation[2].path}>{navigation[2].label}</Link>
-      </div>
-      <PageRender options={navigation} />
-    </div>
+  </div>*/}
+        <PageRender options={navigation} />
+      </MainContainer>
+    </ThemeProvider>
   );
 };
 
