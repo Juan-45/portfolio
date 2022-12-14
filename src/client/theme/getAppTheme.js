@@ -81,76 +81,77 @@ const getTouchScreenTypography = (theme) => ({
   },
   h2: {
     [theme.breakpoints.up("desktop")]: {
-      fontSize: "2.1rem",
+      fontSize: "1.9rem",
     },
     [theme.breakpoints.down("desktop")]: {
-      fontSize: "2.1rem",
+      fontSize: "1.9rem",
     },
     [theme.breakpoints.down("tablets")]: {
-      fontSize: "1.8rem",
+      fontSize: "1.6rem",
     },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "1.5rem",
+      fontSize: "1.3rem",
     },
   },
   subtitle1: {
     lineHeight: "1.2",
     [theme.breakpoints.up("desktop")]: {
-      fontSize: "1.8rem",
+      fontSize: "1.6rem",
     },
     [theme.breakpoints.down("desktop")]: {
-      fontSize: "1.8rem",
+      fontSize: "1.6rem",
     },
     [theme.breakpoints.down("tablets")]: {
-      fontSize: "1.5rem",
+      fontSize: "1.3rem",
     },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "1.2rem",
+      fontSize: "1rem",
     },
   },
   body: {
-    lineHeight: "1.2",
+    lineHeight: "1.4",
     [theme.breakpoints.up("desktop")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.down("desktop")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.down("tablets")]: {
       fontSize: "1.3rem",
     },
+    [theme.breakpoints.down("desktop")]: {
+      fontSize: "1.3rem",
+    },
+    [theme.breakpoints.down("tablets")]: {
+      fontSize: "1.1rem",
+    },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "1rem",
+      fontSize: "0.9rem",
     },
   },
   button: {
-    lineHeight: "1.2",
+    lineHeight: "1",
     [theme.breakpoints.up("desktop")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.down("desktop")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.down("tablets")]: {
       fontSize: "1.3rem",
     },
+    [theme.breakpoints.down("desktop")]: {
+      fontSize: "1.3rem",
+    },
+    [theme.breakpoints.down("tablets")]: {
+      fontSize: "1.1rem",
+    },
     [theme.breakpoints.down("mobile")]: {
-      fontSize: "1rem",
+      fontSize: "0.9rem",
     },
   },
   caption: {
-    lineHeight: "1.2",
+    lineHeight: "1.4",
     [theme.breakpoints.up("desktop")]: {
-      fontSize: "1.5rem",
+      fontSize: "1.1rem",
     },
     [theme.breakpoints.down("desktop")]: {
-      fontSize: "1.5rem",
+      fontSize: "1.1rem",
     },
-    [theme.breakpoints.between("tablets")]: {
-      fontSize: "1.2rem",
-    },
-    [theme.breakpoints.between("mobile")]: {
+    [theme.breakpoints.down("tablets")]: {
       fontSize: "0.9rem",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      fontSize: "0.7rem",
+      lineHeight: "1.2",
     },
   },
 });
@@ -174,7 +175,7 @@ const desktopTypography = {
   },
   button: {
     fontSize: "1rem",
-    lineHeight: "1.2",
+    lineHeight: "1",
   },
   caption: {
     fontSize: "0.9rem",
