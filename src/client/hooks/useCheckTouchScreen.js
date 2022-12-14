@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useCheckTouchScreens = () => {
-  const [isTouchScreen, setIsTouchScreen] = useState();
+  const [isTouchScreen, setIsTouchScreen] = useState(false);
 
   useEffect(() => {
     try {
