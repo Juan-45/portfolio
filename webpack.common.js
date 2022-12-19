@@ -62,12 +62,13 @@ const client = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, "./src/client/components/"),
-      layout: path.resolve(__dirname, "./src/client/layout/"),
+      layout: path.resolve(__dirname, "./src/client/components/layout/"),
       assets: path.resolve(__dirname, "./src/client/assets/"),
       theme: path.resolve(__dirname, "./src/client/theme/"),
       hooks: path.resolve(__dirname, "./src/client/hooks/"),
       pages: path.resolve(__dirname, "./src/client/pages/"),
       utilities: path.resolve(__dirname, "./src/client/utilities/"),
+      helpers: path.resolve(__dirname, "./src/client/helpers/"),
     },
   },
 };
