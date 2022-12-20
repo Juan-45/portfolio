@@ -1,17 +1,14 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import background from "assets/images/welcome/background.jpg";
 
-const Container = styled(Box)({
+const Background = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "background",
+})(({ theme, background }) => ({
   backgroundImage: `url(${background})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   backgroundSize: "cover",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
   height: "100%",
-});
+}));
 
-export default Container;
+export default Background;
