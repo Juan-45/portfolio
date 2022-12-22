@@ -7,13 +7,16 @@ const FlexColumn = styled(Box, {
 })(({ theme, variant }) => {
   const home = {
     justifyContent: "center",
-    height: "100%",
+    borderBottom: `1px solid ${theme.palette.divider}`,
   };
 
   const welcome = {
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
+  };
+
+  const footer = {
+    justifyContent: "space-between",
   };
 
   const getVariantStyles = (variant) => {
@@ -21,6 +24,8 @@ const FlexColumn = styled(Box, {
       return home;
     } else if (variant === "welcome") {
       return welcome;
+    } else if (variant === "footer") {
+      return footer;
     }
   };
 
@@ -28,12 +33,13 @@ const FlexColumn = styled(Box, {
     padding: `0px ${theme.spacing(2)}`,
     display: "flex",
     flexDirection: "column",
+    height: "100%",
     ...getVariantStyles(variant),
   };
 });
 
 FlexColumn.propTypes = {
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(["home", "welcome", "footer"]),
 };
 
 export default FlexColumn;
