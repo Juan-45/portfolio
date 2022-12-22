@@ -2,11 +2,3 @@
   font-family: "Kaushan";
   src: url("./assets/fonts/kaushanscript.woff") format("woff");
 }
-@font-face {
-  font-family: "Ancient";
-  src: url("./assets/fonts/Ancient.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Calligraffitti";
-  src: url("./assets/fonts/Calligraffitti-Regular.ttf") format("truetype");
-}
