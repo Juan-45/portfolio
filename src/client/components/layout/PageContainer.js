@@ -1,9 +1,11 @@
-import { Box } from "@mui/material";
 import GlassContainer from "./GlassContainer";
 import Footer from "./Footer";
-import { fadeInStyles } from "utilities/layout/getEffects";
+import { Box } from "@mui/material";
+import { theme } from "theme/theme";
 
 const PageContainer = ({ children }) => {
+  const { fadeInStyles } = theme;
+
   return (
     <Box
       sx={{

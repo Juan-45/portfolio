@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { keyframes } from "@mui/styled-engine";
 
 /*
 ##### Pantallas móbiles:
@@ -15,11 +16,11 @@ Más chica: 800 x 600
 Mediana: 1280 x 720
 Más grande: 1920 x 1080
 
-##### Ancho mínimo para contenedor root MainContainer => minWidth: "360px"
-
-##### Ancho máximo responsive pasados los 1280 para el contenedor de cada página => maxWidth: "1280px"; usar margin auto para centrado si es necesario
-
 ##### orientation: portrait => width <= height
+*/
+
+/*
+#################   BREAKPOINTS & MEDIA QUERIES   #################
 */
 
 const tablet_min_1200 = "@media (min-width:1200px)";
@@ -29,21 +30,290 @@ const mobile_max_700 = "@media (max-width:700px)";
 const mobile_max_750 = "@media (max-width:750px)";
 const mobile_max_599 = "@media (max-width:599.95px)";
 
+const mediaQueries = {
+  tablet_min_1200: "@media (min-width:1200px)",
+  tablet_min_900: "@media (min-width:900px)",
+  tablet_min_600: "@media (min-width:600px)",
+  mobile_max_700: "@media (max-width:700px)",
+  mobile_max_750: "@media (max-width:750px)",
+  mobile_max_599: "@media (max-width:599.95px)",
+};
+
+/*
+#################   PALETTE   #################
+*/
+
+const palette = {
+  primary: {
+    main: "#9bc5e7",
+    dark: "#697ca5",
+    glass: "#9bc5e7d4",
+  },
+  secondary: {
+    main: "#b3b3b3",
+    glass: "#b3b3b3ad", // amarillo-naranja
+  },
+  glow: {
+    light: "#ff9e52",
+    dark: "#993232",
+  },
+  white: {
+    main: "#fff",
+    dark: "#e9e9e9",
+    glass: "#ffffffbf",
+  },
+  black: {
+    main: "#000000de",
+  },
+  tonalOffset: "0.1",
+};
+
+/*
+#################   ANIMATIONS   #################
+*/
+
+const initialAnimationCss = {
+  fadeIn: { opacity: "0", visibility: "hidden" },
+  scale: {
+    transform: "scale(0.94)",
+  },
+};
+
+/*
+#####   FADEIN   #####
+*/
+
+const fade = keyframes({
+  from: {
+    filter: "blur(4px)",
+  },
+  to: {
+    opacity: "1",
+    visibility: "unset",
+    filter: "blur(0)",
+  },
+});
+
+const getFadeInAnimation = (duration, delay) =>
+  `${fade} ${duration}s ${delay}s forwards cubic-bezier(0.11, 0, 0.5, 0)`;
+
+const getFadeInStyle = (duration, delay) => ({
+  ...initialAnimationCss.fadeIn,
+  animation: getFadeInAnimation(duration, delay),
+});
+
+/*
+#####   SCALE   #####
+*/
+
+const scale = keyframes({
+  from: {},
+  to: {
+    transform: "scale(1)",
+  },
+});
+
+const getScaleAnimation = (duration, delay) =>
+  `${scale} ${duration}s ${delay}s forwards cubic-bezier(0.5, 1, 0.89, 1)`;
+
+const getScaleStyle = (duration) => ({
+  ...initialAnimationCss.scale,
+  animation: getScaleAnimation(duration),
+});
+
+const fadeInAnimation = {
+  0.5: (delay) => getFadeInAnimation(0.5, delay),
+  1: (delay) => getFadeInAnimation(1, delay),
+};
+
+const fadeInStyles = {
+  0.5: (delay) => getFadeInStyle(0.5, delay),
+  1: (delay) => getFadeInStyle(1, delay),
+};
+
+/*
+#####   GLOWING EFFECT   #####
+*/
+
+const glow = {
+  small: `${palette.glow.light} 0px 5px 10px, ${palette.glow.light} 0px 3.25px 7.5px, ${palette.glow.light} 0px 2.5px 5px, ${palette.glow.light} 0px 1.25px 2.5px`,
+  big: `${palette.glow.light} 0px 10px 20px, ${palette.glow.light} 0px 7.5px 15px, ${palette.glow.light} 0px 5px 10px, ${palette.glow.light} 0px 2.5px 5px`,
+};
+
+const bottomBorder = {
+  toRight: keyframes({
+    from: {
+      height: "2px",
+      left: "0",
+      bottom: "0",
+      width: "0px",
+    },
+    to: {
+      height: "2px",
+      left: "0",
+      bottom: "0",
+      width: "100%",
+    },
+  }),
+  toLeft: keyframes({
+    from: {
+      height: "2px",
+      right: "0",
+      bottom: "0",
+      width: "0px",
+    },
+    to: {
+      height: "2px",
+      right: "0",
+      bottom: "0",
+      width: "100%",
+    },
+  }),
+};
+
+const rightBorder = {
+  up: keyframes({
+    from: {
+      width: "2px",
+      right: "0",
+      bottom: "0",
+      height: "0px",
+    },
+    to: {
+      width: "2px",
+      right: "0",
+      bottom: "0",
+      height: "100%",
+    },
+  }),
+  down: keyframes({
+    from: {
+      width: "2px",
+      right: "0",
+      top: "0",
+      height: "0px",
+    },
+    to: {
+      width: "2px",
+      right: "0",
+      top: "0",
+      height: "100%",
+    },
+  }),
+};
+
+const leftBorder = {
+  down: keyframes({
+    from: {
+      width: "2px",
+      left: "0",
+      top: "0",
+      height: "0px",
+    },
+    to: {
+      width: "2px",
+      left: "0",
+      top: "0",
+      height: "100%",
+    },
+  }),
+  up: keyframes({
+    from: {
+      width: "2px",
+      left: "0",
+      bottom: "0",
+      height: "0px",
+    },
+    to: {
+      width: "2px",
+      left: "0",
+      bottom: "0",
+      height: "100%",
+    },
+  }),
+};
+
+const topBorder = {
+  toRight: keyframes({
+    from: {
+      width: "0px",
+      left: "0",
+      top: "0",
+      height: "2px",
+    },
+    to: {
+      width: "100%",
+      left: "0",
+      top: "0",
+      height: "2px",
+    },
+  }),
+  toLeft: keyframes({
+    from: {
+      width: "0px",
+      right: "0",
+      top: "0",
+      height: "2px",
+    },
+    to: {
+      width: "100%",
+      right: "0",
+      top: "0",
+      height: "2px",
+    },
+  }),
+};
+
+const allBorders = keyframes({
+  from: {},
+  to: {
+    border: `2px solid ${palette.glow.dark}`,
+    boxShadow: glow.small,
+  },
+});
+
+const getHoverGlowingStyle = () => ({
+  transition: "color 1s linear, text-shadow 1s linear",
+  textShadow: "unset",
+  "&:hover": {
+    color: palette.glow.dark,
+    textShadow: glow.big,
+    transition: "color 0.2s linear, text-shadow 0.2s linear",
+  },
+});
+
+const keyFramesGroup = {
+  fade,
+  scale,
+  growingBorder: {
+    bottomBorder,
+    rightBorder,
+    leftBorder,
+    topBorder,
+    allBorders,
+  },
+};
+
 //Único Modo
 const common = {
   // "#00796B" Tono verde
-  palette: {
-    primary: {
-      main: "#94c4df",
-    },
-    secondary: {
-      main: "#039BE5", // #81b2cd Tono azul
-    },
-    glass: {
-      main: "#d5d5d570",
-    },
-    tonalOffset: "0.1",
-  },
+  palette: palette,
+
+  glow,
+
+  keyFramesGroup,
+
+  initialAnimationCss,
+
+  fadeInAnimation,
+  fadeInStyles,
+  getFadeInAnimation,
+  getFadeInStyle,
+
+  getScaleAnimation,
+  getScaleStyle,
+
+  getHoverGlowingStyle,
 
   breakpoints: {
     values: {
@@ -52,6 +322,7 @@ const common = {
       tablet_min_600: 600,
       mobile_max_750: 750,
       mobile_max_599: 599.95,
+      lg: 1280,
       sm: 600,
       xs: 0,
     },
@@ -87,12 +358,6 @@ const common = {
       [tablet_min_600]: {
         fontSize: "1.8rem",
       },
-      /* [tablet_min_900]: {
-        fontSize: "1.9rem",
-      },
-      [tablet_min_1200]: {
-        fontSize: "1.9rem",
-      },*/
       [mobile_max_750]: {
         fontSize: "1.2rem",
       },
@@ -105,12 +370,6 @@ const common = {
       [tablet_min_600]: {
         fontSize: "1.2rem",
       },
-      /* [tablet_min_900]: {
-        fontSize: "1.9rem",
-      },
-      [tablet_min_1200]: {
-        fontSize: "1.9rem",
-      },*/
       [mobile_max_750]: {
         fontSize: "1.1rem",
       },
@@ -124,12 +383,6 @@ const common = {
         fontSize: "1rem",
         fontWeight: "600",
       },
-      /* [tablet_min_900]: {
-        fontSize: "1.9rem",
-      },
-      [tablet_min_1200]: {
-        fontSize: "1.9rem",
-      },*/
       [mobile_max_750]: {
         fontSize: "1rem",
         fontWeight: "400",
@@ -144,12 +397,6 @@ const common = {
         fontSize: "1rem",
         fontWeight: "600",
       },
-      /* [tablet_min_900]: {
-        fontSize: "1.9rem",
-      },
-      [tablet_min_1200]: {
-        fontSize: "1.9rem",
-      },*/
       [mobile_max_750]: {
         fontSize: "1rem",
         fontWeight: "400",
@@ -161,18 +408,6 @@ const common = {
     caption: {
       lineHeight: "1.4",
       fontSize: "0.9rem",
-      /*[tablet_min_600]: {
-        fontSize: "0.9rem",
-      },
-       [tablet_min_900]: {
-        fontSize: "1.9rem",
-      },
-      [tablet_min_1200]: {
-        fontSize: "1.9rem",
-      },
-      [mobile_max_750]: {
-        fontSize: "0.8rem",
-      },*/
       [mobile_max_599]: {
         lineHeight: "1.2",
       },
@@ -184,24 +419,95 @@ const common = {
     MuiButton: {
       defaultProps: {
         // The props to change the default for.
-        variant: "contained",
+        variant: "glow",
       },
       styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-        },
+        root: ({ theme }) => ({
+          background: theme.palette.white.glass,
+          boxShadow: theme.shadows[3],
+        }),
       },
+
+      variants: [
+        {
+          props: { variant: "glow" },
+          style: ({ theme }) => ({
+            border: "none",
+            "&:hover": {
+              background: theme.palette.white.glass,
+            },
+            position: "relative",
+            "&::after, &::before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              width: "20%",
+              height: "20%",
+              border: "2px solid",
+              borderRadius: "2px",
+            },
+
+            "&::after": {
+              bottom: 0,
+              right: 0,
+              borderTopColor: "transparent",
+              borderLeftColor: "transparent",
+              borderBottomColor: theme.palette.black.main,
+              borderRightColor: theme.palette.black.main,
+              transition:
+                "width 0.6s ease 0.5s, height 0.6s ease 0.5s, border-bottom-color 0.5s linear, border-right-color 0.5s linear, box-shadow 0.5s linear",
+            },
+
+            "&::before": {
+              top: 0,
+              left: 0,
+              borderBottomColor: "transparent",
+              borderRightColor: "transparent",
+              borderTopColor: theme.palette.black.main,
+              borderLeftColor: theme.palette.black.main,
+              transition:
+                "width 0.6s ease 0.5s, height 0.6s ease 0.5s, border-top-color 0.5s linear, border-left-color 0.5s linear, box-shadow 0.5s linear",
+            },
+
+            "&:hover:after, &:hover:before": {
+              width: "100%",
+              height: "100%",
+              boxShadow: theme.glowingEffects.small,
+            },
+
+            "&:hover:after": {
+              borderBottomColor: theme.palette.glow.dark,
+              borderRightColor: theme.palette.glow.dark,
+              transition:
+                "width 0.6s ease, height 0.6s ease, border-bottom-color 0.2s linear 0.5s, border-right-color 0.2s linear 0.5s, box-shadow 0.2s linear 0.5s",
+            },
+
+            "&:hover:before": {
+              borderTopColor: theme.palette.glow.dark,
+              borderLeftColor: theme.palette.glow.dark,
+              transition:
+                "width 0.6s ease, height 0.6s ease, border-top-color 0.2s linear 0.5s, border-left-color 0.2s linear 0.5s, box-shadow 0.2s linear 0.5s",
+            },
+          }),
+        },
+        {
+          props: { variant: "mobile" },
+          style: ({ theme }) => ({
+            border: `2px solid ${theme.palette.black.main}`,
+          }),
+        },
+      ],
     },
+
     MuiTypography: {
       defaultProps: {
         gutterBottom: true,
       },
     },
+
     MuiPaper: {
       defaultProps: {
         elevation: 2,
-        // responsive: true,
       },
       styleOverrides: {
         root: ({ responsive }) => {
@@ -211,6 +517,7 @@ const common = {
         },
       },
     },
+
     MuiLink: {
       defaultProps: {
         underline: "hover",

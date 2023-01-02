@@ -3,8 +3,7 @@ import FadeInText from "layout/FadeInText";
 import FlexColumn from "layout/FlexColumn";
 import PaperContainer from "layout/PaperContainer";
 import GridForAnimation from "layout/home/GridForAnimation";
-import Span from "../Span";
-
+import { Box } from "@mui/material";
 import html from "assets/images/home/toolsSample/html.svg";
 import css from "assets/images/home/toolsSample/css.svg";
 import js from "assets/images/home/toolsSample/js.svg";
@@ -21,18 +20,14 @@ import vs from "assets/images/home/toolsSample/vs.svg";
 
 import { theme } from "theme/theme";
 import { keyframes } from "@mui/styled-engine";
-import {
-  initialStyle,
-  getFadeInAnimation,
-  fadeInStyles,
-  keyFramesGroup,
-} from "utilities/layout/getEffects";
-import { Typography, Paper, Box, Grid } from "@mui/material";
+
+const { keyFramesGroup, fadeInAnimation, initialAnimationCss } = theme;
+
+const { fadeIn } = initialAnimationCss;
 
 const { growingBorder } = keyFramesGroup;
 
-const { bottomBorder, rightBorder, leftBorder, topBorder, allBorders } =
-  growingBorder;
+const { bottomBorder, rightBorder, leftBorder, allBorders } = growingBorder;
 
 const icons = [
   html,
@@ -90,9 +85,8 @@ const Contianer = ({ children }) => (
     <PaperContainer
       sx={{
         border: "2px solid #fff0",
-        ...initialStyle.fadeIn,
-        animation: `${getFadeInAnimation(
-          0.5,
+        ...fadeIn,
+        animation: `${fadeInAnimation["0.5"](
           0.5
         )}, ${allBorders} 2s 1.9s forwards ease`,
       }}
@@ -124,8 +118,8 @@ const Carousel = () => (
         width: `calc(100% - ${theme.spacing(4)})`,
         height: `calc(100% - ${theme.spacing(2)})`,
         bottom: "0",
-        ...initialStyle.fadeIn,
-        animation: `${getFadeInAnimation(1, 1.9)}`,
+        ...fadeIn,
+        animation: `${fadeInAnimation["1"](1.9)}`,
         "&::before, &::after": {
           content: "''",
           position: "absolute",

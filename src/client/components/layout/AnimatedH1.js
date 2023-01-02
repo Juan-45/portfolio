@@ -1,5 +1,7 @@
 import FadeInText from "layout/FadeInText";
-import { getHoverGlowingStyle } from "utilities/layout/getEffects";
+import { theme } from "theme/theme";
+
+const { getHoverGlowingStyle } = theme;
 
 const AnimatedH1 = ({ type, str, initialDelay }) => (
   <FadeInText

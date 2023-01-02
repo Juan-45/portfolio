@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
-import {
-  getFadeInStyle,
-  getHoverGlowingStyle,
-} from "utilities/layout/getEffects";
-import { getKey } from "helpers/manageReactKey";
 import Quote from "components/layout/Quote";
 import Span from "layout/Span";
+import { theme } from "theme/theme";
+import { getKey } from "helpers/manageReactKey";
 
 const AnimatedQuote = ({ text, glowingTextEffect }) => {
   const splittedText = text.split(" ");
+
+  const { getHoverGlowingStyle, getFadeInStyle } = theme;
 
   const spans = splittedText.map((word, index) => {
     const delay = 0.4 + index / 5;

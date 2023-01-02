@@ -1,27 +1,28 @@
 import PropTypes from "prop-types";
-import {
-  getFadeInAnimation,
-  getScaleAnimation,
-  initialStyle,
-} from "utilities/layout/getEffects";
 import { Typography } from "@mui/material";
+import { theme } from "theme/theme";
 
 const FadeInScaleBody = ({
   children,
   fadeInDuration,
   scaleDuration,
   delay,
+  sx,
 }) => {
+  const { initialAnimationCss, getFadeInAnimation, getScaleAnimation } = theme;
+
+  const { fadeIn, scale } = initialAnimationCss;
+
   return (
     <Typography
-      /*gutterBottom*/
       sx={{
-        ...initialStyle.fadeIn,
-        ...initialStyle.scale,
+        ...fadeIn,
+        ...scale,
         animation: `${getFadeInAnimation(
           fadeInDuration,
           delay
         )}, ${getScaleAnimation(scaleDuration, delay)}`,
+        ...sx,
       }}
     >
       {children}

@@ -3,17 +3,16 @@ import AnimatedH1 from "layout/AnimatedH1";
 import FadeInScaleBody from "layout/FadeInScaleBody";
 import Background from "layout/Background";
 import FlexColumn from "layout/FlexColumn";
-import background from "assets/images/home/backgroundHome.jpeg";
-import { Grid, Box } from "@mui/material";
 import GridForAnimation from "layout/home/GridForAnimation";
+import { Grid, Box } from "@mui/material";
 import wolf from "assets/images/home/presentation/Wolf.jpg";
+import background from "assets/images/home/backgroundHome.jpeg";
 import { theme } from "theme/theme";
-import {
-  initialStyle,
-  fadeInStyles,
-  getFadeInAnimation,
-  keyFramesGroup,
-} from "utilities/layout/getEffects";
+
+const { keyFramesGroup, fadeInAnimation, fadeInStyles, initialAnimationCss } =
+  theme;
+
+const { fadeIn } = initialAnimationCss;
 
 const { growingBorder } = keyFramesGroup;
 
@@ -106,9 +105,8 @@ const Container = ({ children }) => (
     <PaperContainer
       sx={{
         border: "2px solid #fff0",
-        ...initialStyle.fadeIn,
-        animation: `${getFadeInAnimation(
-          0.5,
+        ...fadeIn,
+        animation: `${fadeInAnimation["0.5"](
           0.5
         )}, ${allBorders} 2s 2.2s forwards ease`,
       }}

@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import Span from "layout/Span";
-import { getFadeInStyle } from "utilities/layout/getEffects";
-import { getKey } from "helpers/manageReactKey";
 import { Typography } from "@mui/material";
+import { theme } from "theme/theme";
+import { getKey } from "helpers/manageReactKey";
 
 const FadeInText = ({ str, variant, initialDelay, duration, type, sx }) => {
+  const { getFadeInStyle } = theme;
+
   let splitted;
 
   if (type === "character") {
