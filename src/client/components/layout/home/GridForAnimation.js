@@ -9,7 +9,7 @@ const GridForAnimation = styled(Grid)(({ theme }) => ({
     display: "block",
     position: "absolute",
     backgroundColor: theme.palette.glow.dark,
-    boxShadow: theme.glowingEffects.small,
+    boxShadow: theme.glow.small,
   },
 }));
 
