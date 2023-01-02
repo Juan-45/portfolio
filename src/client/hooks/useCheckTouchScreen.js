@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useCheckTouchScreens = () => {
+const useCheckTouchScreen = () => {
   const [isTouchScreen, setIsTouchScreen] = useState(false);
 
   useEffect(() => {
@@ -15,4 +15,4 @@ const useCheckTouchScreens = () => {
   return { isTouchScreen };
 };
 
-export default useCheckTouchScreens;
+export default useCheckTouchScreen;
