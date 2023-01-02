@@ -122,6 +122,8 @@ const Carousel = () => (
         overflowX: "hidden",
         position: "absolute",
         width: `calc(100% - ${theme.spacing(4)})`,
+        height: `calc(100% - ${theme.spacing(2)})`,
+        bottom: "0",
         ...initialStyle.fadeIn,
         animation: `${getFadeInAnimation(1, 1.9)}`,
         "&::before, &::after": {
@@ -178,6 +180,25 @@ const Carousel = () => (
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
                 backgroundPosition: "center",
+                position: "relative",
+                "&::after": {
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  top: "0px",
+                  left: "0px",
+                  zIndex: "-1",
+                  content: "''",
+                  background: "inherit",
+                  filter: "blur(2px)",
+                  transform: "scale(0.8)",
+                  opacity: "0",
+                  transition: "opacity 0.2s linear, transform 0.2s linear",
+                },
+                "&:hover:after": {
+                  transform: "scale(1.4)",
+                  opacity: "0.5",
+                },
               }}
             />
           </Box>
