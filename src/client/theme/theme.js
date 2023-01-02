@@ -45,13 +45,10 @@ const mediaQueries = {
 
 const palette = {
   primary: {
-    main: "#9bc5e7",
-    dark: "#697ca5",
-    glass: "#9bc5e7d4",
+    main: "#b74f48c4",
   },
   secondary: {
     main: "#b3b3b3",
-    glass: "#b3b3b3ad", // amarillo-naranja
   },
   glow: {
     light: "#ff9e52",
@@ -355,18 +352,19 @@ const common = {
       },
     },
     h2: {
+      lineHeight: 1.5,
       [tablet_min_600]: {
         fontSize: "1.8rem",
       },
       [mobile_max_750]: {
-        fontSize: "1.2rem",
+        fontSize: "1.3rem",
       },
       [mobile_max_599]: {
-        fontSize: "1.2rem",
+        fontSize: "1.3rem",
       },
     },
     subtitle1: {
-      lineHeight: "1.2",
+      lineHeight: 1.5,
       [tablet_min_600]: {
         fontSize: "1.2rem",
       },
@@ -379,6 +377,7 @@ const common = {
     },
     body1: {
       lineHeight: "1.4",
+      fontWeight: "600",
       [tablet_min_600]: {
         fontSize: "1rem",
         fontWeight: "600",
@@ -393,7 +392,8 @@ const common = {
     },
     button: {
       lineHeight: "1",
-      [tablet_min_600]: {
+      fontWeight: "600",
+      /* [tablet_min_600]: {
         fontSize: "1rem",
         fontWeight: "600",
       },
@@ -403,7 +403,7 @@ const common = {
       },
       [mobile_max_599]: {
         fontSize: "1rem",
-      },
+      },*/
     },
     caption: {
       lineHeight: "1.4",
@@ -472,7 +472,7 @@ const common = {
             "&:hover:after, &:hover:before": {
               width: "100%",
               height: "100%",
-              boxShadow: theme.glowingEffects.small,
+              boxShadow: theme.glow.small,
             },
 
             "&:hover:after": {
@@ -520,19 +520,32 @@ const common = {
 
     MuiLink: {
       defaultProps: {
-        underline: "hover",
+        underline: "none",
       },
       styleOverrides: {
-        root: ({ responsive }) => {
-          if (responsive) {
-            return {};
-          } else {
-            return {
-              lineHeight: 2,
-              marginBottom: "0px",
-            };
-          }
-        },
+        root: ({ theme }) => ({
+          lineHeight: 1.4,
+          marginBottom: "1rem",
+          position: "relative",
+          transition: "color 0.6s ease",
+          "&::after": {
+            position: "absolute",
+            content: "''",
+            bottom: 0,
+            left: 0,
+            background: theme.palette.glow.dark,
+            height: "2px",
+            width: "0%",
+            transition: "width 0.6s ease, box-shadow 0.6s ease",
+          },
+          "&:hover:after": {
+            width: "100%",
+            boxShadow: theme.glow.small,
+          },
+          "&:hover": {
+            color: theme.palette.text.primary,
+          },
+        }),
       },
     },
   },
