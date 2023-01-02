@@ -19,6 +19,8 @@ const { growingBorder } = keyFramesGroup;
 const { bottomBorder, rightBorder, leftBorder, topBorder, allBorders } =
   growingBorder;
 
+const movingBorderTime = 1; // default 0.3
+
 const PhotoContainer = () => (
   <GridForAnimation
     item
@@ -27,18 +29,18 @@ const PhotoContainer = () => (
     sx={{
       "&::after": {
         [theme.breakpoints.down("sm")]: {
-          animation: `${rightBorder.down} 0.3s 1s forwards linear`,
+          animation: `${rightBorder.down} ${movingBorderTime}s 1s forwards linear`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toRight} 0.3s 1s forwards linear`,
+          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1s forwards linear`,
         },
       },
       "&::before": {
         [theme.breakpoints.down("sm")]: {
-          animation: `${bottomBorder.toLeft} 0.3s 1.3s forwards linear`,
+          animation: `${bottomBorder.toLeft} ${movingBorderTime}s 1.3s forwards linear`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${rightBorder.up} 0.3s 1.3s forwards linear`,
+          animation: `${rightBorder.up} ${movingBorderTime}s 1.3s forwards linear`,
         },
       },
     }}
@@ -66,15 +68,15 @@ const SideTextContainer = ({ children }) => (
     sx={{
       "&::after": {
         [theme.breakpoints.down("sm")]: {
-          animation: `${leftBorder.down} 0.3s 1.6s forwards linear`,
+          animation: `${leftBorder.down} ${movingBorderTime}s 1.6s forwards linear`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${topBorder.toRight} 0.3s 1.6s forwards linear`,
+          animation: `${topBorder.toRight} ${movingBorderTime}s 1.6s forwards linear`,
         },
       },
       "&::before": {
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toRight} 0.3s 1.9s forwards linear`,
+          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.9s forwards linear`,
         },
       },
     }}
@@ -90,7 +92,7 @@ const BottomTextContainer = ({ children }) => (
     sx={{
       "&::after": {
         [theme.breakpoints.down("sm")]: {
-          animation: `${topBorder.toRight} 0.3s 1.9s forwards linear`,
+          animation: `${topBorder.toRight} ${movingBorderTime}s 1.9s forwards linear`,
         },
       },
     }}

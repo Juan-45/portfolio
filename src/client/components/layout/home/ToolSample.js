@@ -58,6 +58,8 @@ const icons = [
   vs,
 ];
 
+const movingBorderTime = 1; // default 0.3
+
 const scroll = keyframes({
   to: {
     transform: "translateX(calc(-130px * 13))",
@@ -69,10 +71,10 @@ const TextContainer = ({ children }) => (
     sx={{
       pb: theme.spacing(5),
       "&::after": {
-        animation: `${leftBorder.down} 0.3s 1s forwards linear`,
+        animation: `${leftBorder.down} ${movingBorderTime}s 1s forwards linear`,
       },
       "&::before": {
-        animation: `${bottomBorder.toRight} 0.3s 1.3s forwards linear`,
+        animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.3s forwards linear`,
       },
     }}
   >
@@ -106,7 +108,7 @@ const Carousel = () => (
       justifyContent: "center",
       alignItems: "center",
       "&::before": {
-        animation: `${rightBorder.down} 0.3s 1.6s forwards linear`,
+        animation: `${rightBorder.down} ${movingBorderTime}s 1.6s forwards linear`,
       },
     }}
   >
