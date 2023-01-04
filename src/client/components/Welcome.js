@@ -1,31 +1,42 @@
+import PropTypes from "prop-types";
 import Background from "layout/Background";
-import FadeInQuote from "layout/welcome/FadeInQuote";
+import AnimatedQuote from "layout/AnimatedQuote";
 import WelcomeButton from "layout/welcome/WelcomeButton";
 import FlexColumn from "layout/FlexColumn";
-import background from "assets/images/welcome/background.jpg";
-import { useState } from "react";
+import background from "assets/images/welcome/backgroundWelcome.jpg";
+import useCheckTouchScreen from "hooks/useCheckTouchScreen";
 
-const Welcome = ({ children }) => {
-  const [show, setShow] = useState(false);
+const Welcome = ({ children, buttonCallback, renderChildren }) => {
+  const { isTouchScreen } = useCheckTouchScreen();
 
-  if (show) {
+  if (renderChildren) {
     return <>{children}</>;
   } else {
     return (
-      <Background background={background}>
+      <>
+        <Background background={background} variant='welcome' />
         <FlexColumn variant='welcome'>
-          <FadeInQuote
+          <AnimatedQuote
             text='"Hay solo dos grandes equivocaciones que se pueden cometer en el
             camino para lograr la maestria de uno mismo, no comenzar y no ir todo
             el camino."'
+            glowingTextEffect={true}
           />
-          <WelcomeButton onClick={() => setShow(!show)}>Ingresar</WelcomeButton>
+          <WelcomeButton
+            variant={isTouchScreen ? "mobile" : "glow"}
+            onClick={buttonCallback}
+          >
+            Ingresar
+          </WelcomeButton>
         </FlexColumn>
-      </Background>
+      </>
     );
   }
 };
 
-export default Welcome;
+Welcome.prototype = {
+  buttonCallback: PropTypes.func.isRequired,
+  renderChildren: PropTypes.bool.isRequired,
+};
 
-//desde path URL/, renderizar Welcome, si ingreso renderizar Home
+export default Welcome;

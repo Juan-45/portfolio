@@ -1,53 +1,63 @@
 import MainContainer from "layout/MainContainer";
 import PageRender from "components/PageRender";
-import { Link } from "react-router-dom";
-import Welcome from "./components/Welcome";
+import Welcome from "components/Welcome";
 import Home from "pages/Home";
 import Page2 from "pages/Page2";
 import Page3 from "pages/Page3";
-import { Grid, Typography } from "@mui/material";
-
+import PageContainer from "layout/PageContainer";
+import ScrollToTop from "components/ScrollToTop";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { getAppTheme } from "./theme/getAppTheme";
+import { theme } from "theme/theme";
+import { useState } from "react";
+import useRouter from "hooks/useRouter";
 
 const App = () => {
+  const [renderChildren, setRenderChildren] = useState(/*false*/ true);
+
+  const switchChildToRender = () => setRenderChildren(true);
+
+  const { pathname } = useRouter();
+
+  const homeAndWelcomePath = "/";
+
+  const currentlyOnBaseUrl = pathname === homeAndWelcomePath;
+
+  const hideNavAndFooter = currentlyOnBaseUrl && !renderChildren;
+
   const navigation = [
     {
       label: "Página 1",
-      path: "/",
+      path: homeAndWelcomePath,
       element: (
-        <Welcome>
+        <Welcome
+          buttonCallback={switchChildToRender}
+          renderChildren={renderChildren}
+        >
           <Home />
         </Welcome>
       ),
     },
     {
       label: "Página 2",
-      path: "page2",
+      path: "projects",
       element: <Page2 />,
     },
     {
       label: "Página 3",
-      path: "page3",
+      path: "cv",
       element: <Page3 />,
     },
   ];
 
-  const theme = getAppTheme();
-  console.log("THEME", theme);
+  //console.log("THEME", theme);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme injectFirst />
       <MainContainer>
-        {/*  <GlassContainer
-          sx={{ height: "65px", position: "absolute", width: "100%" }}
-  ></GlassContainer>*/}
-        {/*   <div>
-        <Link to={navigation[0].path}>{navigation[0].label}</Link>
-        <Link to={navigation[1].path}>{navigation[1].label}</Link>
-        <Link to={navigation[2].path}>{navigation[2].label}</Link>
-  </div>*/}
-        <PageRender options={navigation} />
+        <PageContainer hide={hideNavAndFooter}>
+          <ScrollToTop />
+          <PageRender options={navigation} />
+        </PageContainer>
       </MainContainer>
     </ThemeProvider>
   );
