@@ -28,14 +28,16 @@ const PhotoContainer = () => (
     sm={5}
     sx={{
       "&::after": {
+        //2do
         [theme.breakpoints.down("sm")]: {
           animation: `${rightBorder.down} ${movingBorderTime}s 1s forwards linear`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1s forwards linear`,
+          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.1s forwards linear`,
         },
       },
       "&::before": {
+        //3ro
         [theme.breakpoints.down("sm")]: {
           animation: `${bottomBorder.toLeft} ${movingBorderTime}s 1.3s forwards linear`,
         },
@@ -67,6 +69,7 @@ const SideTextContainer = ({ children }) => (
     sm={7}
     sx={{
       "&::after": {
+        //4to
         [theme.breakpoints.down("sm")]: {
           animation: `${leftBorder.down} ${movingBorderTime}s 1.6s forwards linear`,
         },
@@ -75,8 +78,9 @@ const SideTextContainer = ({ children }) => (
         },
       },
       "&::before": {
+        //5to
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.9s forwards linear`,
+          animation: `${bottomBorder.toLeft} ${movingBorderTime}s 1.9s forwards linear`,
         },
       },
     }}
@@ -108,6 +112,7 @@ const Container = ({ children }) => (
       sx={{
         border: "2px solid #fff0",
         ...fadeIn,
+        //1ro y 6to
         animation: `${fadeInAnimation["0.5"](
           0.5
         )}, ${allBorders} 2s 2.2s forwards ease`,
