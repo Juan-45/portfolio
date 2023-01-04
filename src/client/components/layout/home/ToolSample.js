@@ -21,6 +21,8 @@ import vs from "assets/images/home/toolsSample/vs.svg";
 import { theme } from "theme/theme";
 import { keyframes } from "@mui/styled-engine";
 
+import useTriggerOnScroll from "hooks/useTriggerOnScroll";
+
 const { keyFramesGroup, fadeInAnimation, initialAnimationCss } = theme;
 
 const { fadeIn } = initialAnimationCss;
@@ -66,15 +68,21 @@ const scroll = keyframes({
   },
 });
 
-const TextContainer = ({ children }) => (
+const TextContainer = ({ children, triggerAnimation }) => (
   <GridForAnimation
     sx={{
-      pb: theme.spacing(5),
+      pb: theme.spacing(3),
       "&::after": {
-        animation: `${leftBorder.down} ${movingBorderTime}s 1s forwards linear`,
+        //2do
+        animation: triggerAnimation
+          ? `${leftBorder.down} ${movingBorderTime}s 0.3s forwards linear`
+          : "unset",
       },
       "&::before": {
-        animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.3s forwards linear`,
+        //3ro
+        animation: triggerAnimation
+          ? `${bottomBorder.toRight} ${movingBorderTime}s 0.6s forwards linear`
+          : "unset",
       },
     }}
   >
@@ -82,23 +90,27 @@ const TextContainer = ({ children }) => (
   </GridForAnimation>
 );
 
-const Contianer = ({ children }) => (
+const Contianer = React.forwardRef(({ children, triggerAnimation }, ref) => (
   <FlexColumn variant='home'>
     <PaperContainer
+      ref={ref}
       sx={{
         border: "2px solid #fff0",
         ...fadeIn,
-        animation: `${fadeInAnimation["0.5"](
-          0.5
-        )}, ${allBorders} 2s 1.9s forwards ease`,
+        //1ro y 5to
+        animation: triggerAnimation
+          ? `${fadeInAnimation["0.2"](
+              0.1
+            )}, ${allBorders} 2s 1.2s forwards ease`
+          : "unset",
       }}
     >
       {children}
     </PaperContainer>
   </FlexColumn>
-);
+));
 
-const Carousel = () => (
+const Carousel = ({ triggerAnimation }) => (
   <GridForAnimation
     sx={{
       //highway-slider
@@ -108,7 +120,10 @@ const Carousel = () => (
       justifyContent: "center",
       alignItems: "center",
       "&::before": {
-        animation: `${rightBorder.down} ${movingBorderTime}s 1.6s forwards linear`,
+        //4to
+        animation: triggerAnimation
+          ? `${rightBorder.down} ${movingBorderTime}s 0.9s forwards linear `
+          : "unset",
       },
     }}
   >
@@ -121,7 +136,8 @@ const Carousel = () => (
         height: `calc(100% - ${theme.spacing(2)})`,
         bottom: "0",
         ...fadeIn,
-        animation: `${fadeInAnimation["1"](1.9)}`,
+        //2doA
+        animation: triggerAnimation ? `${fadeInAnimation["1"](1.3)}` : "unset",
         "&::before, &::after": {
           content: "''",
           position: "absolute",
@@ -161,7 +177,9 @@ const Carousel = () => (
             key={index}
             sx={{
               width: "130px",
-              animation: `${scroll} 20s linear infinite`,
+              animation: triggerAnimation
+                ? `${scroll} 20s linear infinite`
+                : "unset",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -205,19 +223,28 @@ const Carousel = () => (
 );
 
 const ToolSample = () => {
+  const { targetEl, trigger } = useTriggerOnScroll();
+  console.log("trigger", trigger);
   return (
-    <Contianer>
-      <TextContainer>
-        <AnimatedH1 str='Herramientas' initialDelay={1} />
+    <Contianer ref={targetEl} triggerAnimation={trigger}>
+      <TextContainer triggerAnimation={trigger}>
+        <AnimatedH1
+          str='Herramientas'
+          /*1roA*/
+          initialDelay={0.3}
+          triggerAnimation={trigger}
+        />
         <FadeInText
           str='HTML, CSS3, JS ES6 2015, React.js V17, MUI, React Router, Axios, Formik, Yup,
       Webpack, Babel, GitHub, Visual Studio Code, Visual Studio.'
           variant='body'
           type='word'
-          initialDelay={2.3}
+          initialDelay={1.3}
+          /*3roA*/
+          triggerAnimation={trigger}
         />
       </TextContainer>
-      <Carousel />
+      <Carousel triggerAnimation={trigger} />
     </Contianer>
   );
 };
