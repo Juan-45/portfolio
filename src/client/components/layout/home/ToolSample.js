@@ -99,9 +99,7 @@ const Contianer = React.forwardRef(({ children, triggerAnimation }, ref) => (
         ...fadeIn,
         //1ro y 5to
         animation: triggerAnimation
-          ? `${fadeInAnimation["0.2"](
-              0.1
-            )}, ${allBorders} 2s 1.2s forwards ease`
+          ? `${fadeInAnimation["0.2"](0)}, ${allBorders} 2s 1.2s forwards ease`
           : "unset",
       }}
     >
@@ -224,7 +222,7 @@ const Carousel = ({ triggerAnimation }) => (
 
 const ToolSample = () => {
   const { targetEl, trigger } = useTriggerOnScroll();
-  console.log("trigger", trigger);
+
   return (
     <Contianer ref={targetEl} triggerAnimation={trigger}>
       <TextContainer triggerAnimation={trigger}>
