@@ -3,6 +3,7 @@ import Span from "layout/Span";
 import { Typography } from "@mui/material";
 import { theme } from "theme/theme";
 import { getKey } from "helpers/manageReactKey";
+import { getStyleOnCondition } from "helpers/getStyleOnCondition";
 
 const FadeInText = ({
   str,
@@ -14,12 +15,6 @@ const FadeInText = ({
   triggerAnimation,
 }) => {
   const { getFadeInStyle } = theme;
-
-  const fadeInEffect = (duration, delay) => {
-    if (triggerAnimation) {
-      return getFadeInStyle(duration, delay);
-    }
-  };
 
   let splitted;
 
@@ -35,7 +30,9 @@ const FadeInText = ({
       <Span
         key={getKey(str, index)}
         sx={{
-          ...fadeInEffect(duration, delay),
+          ...getStyleOnCondition(triggerAnimation, () =>
+            getFadeInStyle(duration, delay)
+          ),
           pr: type === "word" ? "0.5rem" : "unset",
         }}
       >

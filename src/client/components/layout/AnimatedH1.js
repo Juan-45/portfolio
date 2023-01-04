@@ -1,16 +1,11 @@
 import PropTypes from "prop-types";
 import FadeInText from "layout/FadeInText";
 import { theme } from "theme/theme";
+import { getStyleOnCondition } from "helpers/getStyleOnCondition";
 
 const { getHoverGlowingStyle } = theme;
 
 const AnimatedH1 = ({ type, str, initialDelay, triggerAnimation }) => {
-  const glowEffect = () => {
-    if (triggerAnimation) {
-      return getHoverGlowingStyle();
-    }
-  };
-
   return (
     <FadeInText
       str={str}
@@ -21,7 +16,7 @@ const AnimatedH1 = ({ type, str, initialDelay, triggerAnimation }) => {
       triggerAnimation={triggerAnimation}
       sx={{
         fontFamily: "Kaushan",
-        ...glowEffect(),
+        ...getStyleOnCondition(triggerAnimation, getHoverGlowingStyle),
         width: "fit-content",
       }}
     />
