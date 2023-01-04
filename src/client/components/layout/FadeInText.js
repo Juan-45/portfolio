@@ -4,8 +4,22 @@ import { Typography } from "@mui/material";
 import { theme } from "theme/theme";
 import { getKey } from "helpers/manageReactKey";
 
-const FadeInText = ({ str, variant, initialDelay, duration, type, sx }) => {
+const FadeInText = ({
+  str,
+  variant,
+  initialDelay,
+  duration,
+  type,
+  sx,
+  triggerAnimation,
+}) => {
   const { getFadeInStyle } = theme;
+
+  const fadeInEffect = (duration, delay) => {
+    if (triggerAnimation) {
+      return getFadeInStyle(duration, delay);
+    }
+  };
 
   let splitted;
 
@@ -21,7 +35,7 @@ const FadeInText = ({ str, variant, initialDelay, duration, type, sx }) => {
       <Span
         key={getKey(str, index)}
         sx={{
-          ...getFadeInStyle(duration, delay),
+          ...fadeInEffect(duration, delay),
           pr: type === "word" ? "0.5rem" : "unset",
         }}
       >
@@ -43,11 +57,13 @@ FadeInText.propTypes = {
   initialDelay: PropTypes.number,
   duration: PropTypes.number,
   type: PropTypes.oneOf(["character", "word"]).isRequired,
+  triggerAnimation: PropTypes.bool,
 };
 
 FadeInText.defaultProps = {
   initialDelay: 0.1,
   duration: 0.5,
+  triggerAnimation: true,
 };
 
 export default FadeInText;
