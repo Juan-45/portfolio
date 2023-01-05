@@ -24,9 +24,9 @@ const App = () => {
 
   const hideNavAndFooter = currentlyOnBaseUrl && !renderChildren;
 
-  const navigation = [
+  const routesOptions = [
     {
-      label: "Página 1",
+      label: "Home",
       path: homeAndWelcomePath,
       element: (
         <Welcome
@@ -36,16 +36,19 @@ const App = () => {
           <Home />
         </Welcome>
       ),
+      state: { from: undefined },
     },
     {
-      label: "Página 2",
-      path: "projects",
+      label: "Proyectos",
+      path: "/projects",
       element: <Page2 />,
+      state: { from: pathname },
     },
     {
-      label: "Página 3",
-      path: "cv",
+      label: "Mi CV",
+      path: "/cv",
       element: <Page3 />,
+      state: { from: pathname },
     },
   ];
 
@@ -54,9 +57,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme injectFirst />
       <MainContainer>
-        <PageContainer hide={hideNavAndFooter}>
+        <PageContainer hide={hideNavAndFooter} routesOptions={routesOptions}>
           <ScrollToTop />
-          <PageRender options={navigation} />
+          <PageRender routesOptions={routesOptions} />
         </PageContainer>
       </MainContainer>
     </ThemeProvider>

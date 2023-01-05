@@ -1,16 +1,16 @@
 import PropTypes from "prop-types";
-import GlassContainer from "./GlassContainer";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
-import NavLink from "layout/NavLink";
-import { theme } from "theme/theme";
+import NavBar from "layout/NavBar";
 import { renderOnCondition } from "helpers/renderOnCondition";
 import useRouter from "hooks/useRouter";
 
-const PageContainer = ({ children, hide }) => {
-  const { fadeInStyles } = theme;
-
-  const { pathname } = useRouter();
+const PageContainer = ({ children, hide, routesOptions }) => {
+  const navigationOptions = routesOptions.map((item) => ({
+    to: item.path,
+    label: item.label,
+    state: item.state,
+  }));
 
   return (
     <Box
@@ -19,29 +19,7 @@ const PageContainer = ({ children, hide }) => {
       }}
     >
       {renderOnCondition(
-        <GlassContainer
-          sx={{
-            ...fadeInStyles["0.5"](0.2),
-          }}
-        >
-          <NavLink to={"/"} preventScrollReset={false}>
-            Home
-          </NavLink>
-          <NavLink
-            to={"/projects"}
-            preventScrollReset={false}
-            state={{ from: pathname }}
-          >
-            Proyectos
-          </NavLink>
-          <NavLink
-            to={"/cv"}
-            preventScrollReset={false}
-            state={{ from: pathname }}
-          >
-            Mi CV
-          </NavLink>
-        </GlassContainer>,
+        <NavBar navigationOptions={navigationOptions} />,
         !hide
       )}
       {children}

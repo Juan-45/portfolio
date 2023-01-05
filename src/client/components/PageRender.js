@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-const PageRender = ({ options }) => (
+const PageRender = ({ routesOptions }) => (
   <Routes>
-    {options.map((item) => (
+    {routesOptions.map((item) => (
       <Route key={item.path} path={item.path} element={item.element} />
     ))}
   </Routes>
