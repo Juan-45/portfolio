@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
-import NavBar from "layout/NavBar";
+import NavBar from "components/NavBar";
 import { renderOnCondition } from "helpers/renderOnCondition";
-import useRouter from "hooks/useRouter";
 
 const PageContainer = ({ children, hide, routesOptions }) => {
   const navigationOptions = routesOptions.map((item) => ({
     to: item.path,
     label: item.label,
     state: item.state,
+    mobileIcon: item.mobileIcon,
   }));
 
   return (

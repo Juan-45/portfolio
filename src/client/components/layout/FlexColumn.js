@@ -30,7 +30,12 @@ const FlexColumn = styled(Box, {
   };
 
   return {
-    padding: `${theme.spacing(10)} ${theme.spacing(2)}`,
+    [theme.breakpoints.up("mobile_max_599")]: {
+      padding: `${theme.spacing(10)} ${theme.spacing(2)}`,
+    },
+    [theme.breakpoints.down("mobile_max_599")]: {
+      padding: theme.spacing(2),
+    },
     margin: "0px auto",
     display: "flex",
     flexDirection: "column",

@@ -1,13 +1,15 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
-const NavLink = styled(Link)(({ theme }) => ({
+const NavLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) => ({
   position: "relative",
   height: "initial",
   marginBottom: "0px",
   padding: `${theme.spacing(1)} ${theme.spacing(3)}`,
   lineHeight: 1.4,
-  transition: "color 0.6s ease",
   cursor: "pointer",
   background: theme.palette.white.main,
   color: theme.palette.text.primary,
@@ -26,6 +28,8 @@ const NavLink = styled(Link)(({ theme }) => ({
     height: "2px",
     width: "0%",
     bottom: 0,
+    boxShadow: active ? theme.glow.small : "unset",
+    width: active ? "50%" : "0%",
   },
 
   "&::after": {
@@ -45,10 +49,14 @@ const NavLink = styled(Link)(({ theme }) => ({
     "&:hover:after": {
       width: "100%",
     },
+    "&::after": {
+      width: active ? "100%" : "0%",
+    },
     "&::before": {
       width: "2px",
       height: "0%",
       transition: "height 0.4s ease, box-shadow 0.4s ease",
+      height: active ? "100%" : "0%",
     },
     "&:hover:before": {
       height: "100%",
@@ -75,5 +83,13 @@ const NavLink = styled(Link)(({ theme }) => ({
     },
   },
 }));
+
+NavLink.propTypes = {
+  active: PropTypes.bool,
+};
+
+NavLink.defaultProps = {
+  active: false,
+};
 
 export default NavLink;
