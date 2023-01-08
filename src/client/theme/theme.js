@@ -48,7 +48,7 @@ const palette = {
     main: "#b74f48c4",
   },
   secondary: {
-    main: "#b3b3b3",
+    main: "#e2e2e2bf", //#e3cdff
   },
   glow: {
     light: "#ff9e52",
@@ -57,10 +57,14 @@ const palette = {
   white: {
     main: "#fff",
     dark: "#e9e9e9",
-    glass: "#ffffffbf",
+    glass1: "#ffffffbf",
+    glass2: "#fffffff2",
   },
   black: {
     main: "#000000de",
+  },
+  text: {
+    visited: "#7dc7cc",
   },
   tonalOffset: "0.1",
 };
@@ -119,6 +123,7 @@ const getScaleStyle = (duration) => ({
 });
 
 const fadeInAnimation = {
+  0.2: (delay) => getFadeInAnimation(0.2, delay),
   0.5: (delay) => getFadeInAnimation(0.5, delay),
   1: (delay) => getFadeInAnimation(1, delay),
 };
@@ -423,7 +428,7 @@ const common = {
       },
       styleOverrides: {
         root: ({ theme }) => ({
-          background: theme.palette.white.glass,
+          background: theme.palette.white.glass1,
           boxShadow: theme.shadows[3],
         }),
       },
@@ -434,7 +439,7 @@ const common = {
           style: ({ theme }) => ({
             border: "none",
             "&:hover": {
-              background: theme.palette.white.glass,
+              background: theme.palette.white.glass1,
             },
             position: "relative",
             "&::after, &::before": {
@@ -528,11 +533,13 @@ const common = {
           marginBottom: "1rem",
           position: "relative",
           transition: "color 0.6s ease",
+          cursor: "pointer",
           "&::after": {
             position: "absolute",
             content: "''",
             bottom: 0,
             left: 0,
+            zIndex: "1",
             background: theme.palette.glow.dark,
             height: "2px",
             width: "0%",
@@ -547,6 +554,78 @@ const common = {
           },
         }),
       },
+
+      variants: [
+        {
+          props: { variant: "nav" },
+          style: ({ theme, active }) => ({
+            marginBottom: "0px",
+            background: theme.palette.white.main,
+            color: theme.palette.text.primary,
+            padding: `${theme.spacing(1)} ${theme.spacing(3)}`,
+            //background: active ? "green" : "initial",
+            height: "initial",
+
+            "&::after": {
+              right: "50%",
+              left: "unset",
+            },
+            "&:hover:after": {
+              width: "50%",
+            },
+            "&::before": {
+              position: "absolute",
+              content: "''",
+              bottom: 0,
+              left: "50%",
+              zIndex: "1",
+              background: theme.palette.glow.dark,
+              width: "0%",
+              height: "2px",
+              transition: "width 0.4s ease, box-shadow 0.4s ease",
+            },
+            "&:hover:before": {
+              width: "50%",
+              boxShadow: theme.glow.small,
+            },
+
+            "&:first-of-type, &:last-child": {
+              "&:hover:after": {
+                width: "100%",
+              },
+              "&::before": {
+                width: "2px",
+                height: "0%",
+                transition: "height 0.4s ease, box-shadow 0.4s ease",
+              },
+              "&:hover:before": {
+                height: "100%",
+                width: "2px",
+              },
+            },
+
+            "&:first-of-type": {
+              "&::after": {
+                right: "unset",
+                left: 0,
+              },
+              "&::before": {
+                left: 0,
+              },
+            },
+
+            "&:last-child": {
+              "&::after": {
+                right: 0,
+              },
+              "&::before": {
+                right: 0,
+                left: "unset",
+              },
+            },
+          }),
+        },
+      ],
     },
   },
 };
