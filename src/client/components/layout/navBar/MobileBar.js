@@ -15,7 +15,7 @@ const FixedContainer = styled(Box)({
   position: "fixed",
   width: "100%",
   height: "100%",
-  zIndex: "2",
+  zIndex: "1199",
 });
 
 const Container = styled(Box, {
@@ -23,7 +23,7 @@ const Container = styled(Box, {
 })(({ open, translateX }) => ({
   position: "fixed",
   bottom: "0",
-  zIndex: "3",
+  zIndex: "1200",
   width: "100%",
   transition: "transform 225ms 225ms cubic-bezier(0, 0, 0.2, 1)",
   transform: open ? "translate(0px, 0px)" : `translate(0px, ${translateX}px)`,
@@ -96,7 +96,7 @@ const StyledLink = styled(Link, {
   "&::after, &::before": {
     position: "absolute",
     content: "''",
-    zIndex: "3",
+    zIndex: "1200",
     background: theme.palette.glow.dark,
     transition: "width 0.6s ease, box-shadow 0.6s ease",
     height: "1px",

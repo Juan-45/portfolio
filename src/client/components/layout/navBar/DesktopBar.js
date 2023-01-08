@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 const Container = styled(Box)(({ theme }) => ({
   position: "fixed",
   top: "0",
-  zIndex: "1",
+  zIndex: "1200",
   width: "100%",
   minHeight: "25px",
   padding: `${theme.spacing(1)} ${theme.spacing(0)}`,
