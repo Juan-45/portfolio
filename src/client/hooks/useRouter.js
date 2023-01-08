@@ -11,7 +11,7 @@ const useRouter = () => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const match = useMatch();
+  //*********************const match = useMatch(); FIX THIS ERROR: path undefined
 
   // Return our custom router object
   // Memoize so that a new object is only returned if something changes
@@ -30,11 +30,11 @@ const useRouter = () => {
       },
       // Include match, location, history objects so we have
       // access to extra React Router functionality if needed.
-      match,
+      // match,
       location,
       navigate,
     }),
-    [params, match, location, navigate]
+    [params, /* match,*/ location, navigate]
   );
 };
 
