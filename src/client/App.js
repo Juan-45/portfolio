@@ -2,6 +2,7 @@ import MainContainer from "layout/MainContainer";
 import PageRender from "components/PageRender";
 import Welcome from "components/Welcome";
 import Home from "pages/Home";
+import Projects from "pages/Projects";
 import Page2 from "pages/Page2";
 import Page3 from "pages/Page3";
 import PageContainer from "layout/PageContainer";
@@ -49,7 +50,7 @@ const App = () => {
     {
       label: "Proyectos",
       path: projectsPath,
-      element: <Page2 />,
+      element: <Projects />,
       mobileIcon: <CollectionsBookmarkIcon />,
       state: { from: pathname, activePath: pathname === projectsPath },
     },
