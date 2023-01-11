@@ -3,9 +3,9 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 const FlexColumn = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "variant" && prop !== "bottomBorder",
-})(({ theme, variant, bottomBorder }) => {
-  const home = {
+  shouldForwardProp: (prop) => prop !== "justify" && prop !== "bottomBorder",
+})(({ theme, justify, bottomBorder }) => {
+  const center = {
     justifyContent: "center",
   };
 
@@ -15,17 +15,17 @@ const FlexColumn = styled(Box, {
     maxWidth: "1280px",
   };
 
-  const footer = {
+  const spaceBetween = {
     justifyContent: "space-between",
   };
 
-  const getVariantStyles = (variant) => {
-    if (variant === "home") {
-      return home;
-    } else if (variant === "welcome") {
+  const getVariantStyles = (justify) => {
+    if (justify === "center") {
+      return center;
+    } else if (justify === "welcome") {
       return welcome;
-    } else if (variant === "footer") {
-      return footer;
+    } else if (justify === "spaceBetween") {
+      return spaceBetween;
     }
   };
 
@@ -44,12 +44,12 @@ const FlexColumn = styled(Box, {
     minHeight: "100%",
     width: "100%",
     borderBottom: bottomBorder ? `1px solid ${theme.palette.divider}` : "unset",
-    ...getVariantStyles(variant),
+    ...getVariantStyles(justify),
   };
 });
 
 FlexColumn.propTypes = {
-  variant: PropTypes.oneOf(["home", "welcome", "footer"]),
+  justify: PropTypes.oneOf(["center", "welcome", "spaceBetween"]),
   bottomBorder: PropTypes.bool,
 };
 
