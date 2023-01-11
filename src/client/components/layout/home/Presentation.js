@@ -103,7 +103,7 @@ const BottomTextContainer = ({ children }) => (
 );
 
 const Container = ({ children }) => (
-  <FlexColumn variant='home'>
+  <FlexColumn justify='center'>
     <Background background={background} />
     <PaperContainer
       sx={{

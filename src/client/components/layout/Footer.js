@@ -37,7 +37,7 @@ const SubHeader = ({ children }) => (
 const Footer = () => {
   return (
     <FlexColumn
-      variant='footer'
+      justify='spaceBetween'
       sx={{
         minHeight: "50vh",
         pt: theme.spacing(10),

@@ -87,7 +87,7 @@ const TextContainer = ({ children, triggerAnimation }) => (
 );
 
 const Contianer = React.forwardRef(({ children, triggerAnimation }, ref) => (
-  <FlexColumn variant='home'>
+  <FlexColumn justify='center'>
     <PaperContainer
       ref={ref}
       sx={{

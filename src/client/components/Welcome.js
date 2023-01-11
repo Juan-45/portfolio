@@ -15,7 +15,7 @@ const Welcome = ({ children, buttonCallback, renderChildren }) => {
     return (
       <>
         <Background background={background} variant='welcome' />
-        <FlexColumn variant='welcome'>
+        <FlexColumn justify='welcome'>
           <AnimatedQuote
             text='"Hay solo dos grandes equivocaciones que se pueden cometer en el
             camino para lograr la maestria de uno mismo, no comenzar y no ir todo
