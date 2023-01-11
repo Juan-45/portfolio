@@ -15,7 +15,7 @@ import useRouter from "hooks/useRouter";
 import cvPath from "assets/cv/CV 2023.pdf";
 
 const App = () => {
-  const [renderChildren, setRenderChildren] = useState(/*false*/ true);
+  const [renderChildren, setRenderChildren] = useState(/*false*/ false);
 
   const switchChildToRender = () => setRenderChildren(true);
 
