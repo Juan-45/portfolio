@@ -2,9 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
-const NavLink = styled(Link, {
-  shouldForwardProp: (prop) => prop !== "active",
-})(({ theme, active }) => ({
+const getStyles = ({ theme, active }) => ({
   position: "relative",
   height: "initial",
   marginBottom: "0px",
@@ -82,7 +80,27 @@ const NavLink = styled(Link, {
       left: "unset",
     },
   },
-}));
+});
+
+const LinkStyled = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getStyles);
+
+const AnchorStyled = styled("a", {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getStyles);
+
+const NavLink = ({ children, isExternal, to, ...props }) => {
+  return isExternal ? (
+    <AnchorStyled href={to} {...props}>
+      {children}
+    </AnchorStyled>
+  ) : (
+    <LinkStyled to={to} {...props}>
+      {children}
+    </LinkStyled>
+  );
+};
 
 NavLink.propTypes = {
   active: PropTypes.bool,

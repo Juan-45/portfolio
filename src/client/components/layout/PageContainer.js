@@ -6,10 +6,12 @@ import { renderOnCondition } from "helpers/renderOnCondition";
 
 const PageContainer = ({ children, hide, routesOptions }) => {
   const navigationOptions = routesOptions.map((item) => ({
-    to: item.path,
+    to: item.to,
     label: item.label,
     state: item.state,
     mobileIcon: item.mobileIcon,
+    linkProp: item.linkProp,
+    isExternal: item.isExternal,
   }));
 
   return (

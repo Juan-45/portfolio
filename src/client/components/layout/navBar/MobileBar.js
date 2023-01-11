@@ -76,9 +76,7 @@ AnimatedArrow.defaultProps = {
   open: false,
 };
 
-const StyledLink = styled(Link, {
-  shouldForwardProp: (prop) => prop !== "active",
-})(({ theme, active }) => ({
+const getStyles = ({ theme, active }) => ({
   position: "relative",
   height: "initial",
   marginBottom: "0px",
@@ -118,17 +116,25 @@ const StyledLink = styled(Link, {
     boxShadow: theme.glow.small,
     width: "50%",
   },
-}));
+});
 
-StyledLink.propTypes = {
+const LinkStyled = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getStyles);
+
+const AnchorStyled = styled("a", {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getStyles);
+
+LinkStyled.propTypes = {
   active: PropTypes.bool,
 };
 
-StyledLink.defaultProps = {
+LinkStyled.defaultProps = {
   active: false,
 };
 
-const NavLink = ({ label, icon, ...props }) => {
+const NavLink = ({ label, icon, isExternal, to, ...props }) => {
   return (
     <ListItem
       disablePadding
@@ -137,10 +143,17 @@ const NavLink = ({ label, icon, ...props }) => {
         height: "52px",
       }}
     >
-      <StyledLink {...props}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={label} />
-      </StyledLink>
+      {isExternal ? (
+        <AnchorStyled href={to} {...props}>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText primary={label} />
+        </AnchorStyled>
+      ) : (
+        <LinkStyled to={to} {...props}>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText primary={label} />
+        </LinkStyled>
+      )}
     </ListItem>
   );
 };

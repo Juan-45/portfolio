@@ -31,7 +31,7 @@ const clientRules = [
     },
   },
   {
-    test: /\.(woff|woff2|ttf)$/i,
+    test: /\.(woff|woff2|ttf|pdf)$/i,
     type: "asset/resource",
     generator: {
       filename: "assets/fonts/[name][ext]",

@@ -26,6 +26,8 @@ const DesktopBar = ({ navigationOptions }) => {
       to={item.to}
       state={item.state}
       active={item.state.activePath}
+      isExternal={item.isExternal}
+      {...item.linkProp}
     >
       {item.label}
     </NavLink>

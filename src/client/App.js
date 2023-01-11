@@ -14,6 +14,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "theme/theme";
 import { useState } from "react";
 import useRouter from "hooks/useRouter";
+import cvPath from "assets/cv/CV 2023.pdf";
 
 const App = () => {
   const [renderChildren, setRenderChildren] = useState(/*false*/ true);
@@ -26,8 +27,6 @@ const App = () => {
 
   const projectsPath = "/projects";
 
-  const cvPath = "/cv";
-
   const currentlyOnBaseUrl = pathname === homeAndWelcomePath;
 
   const hideNavAndFooter = currentlyOnBaseUrl && !renderChildren;
@@ -35,7 +34,7 @@ const App = () => {
   const routesOptions = [
     {
       label: "Home",
-      path: homeAndWelcomePath,
+      to: homeAndWelcomePath,
       element: (
         <Welcome
           buttonCallback={switchChildToRender}
@@ -46,20 +45,25 @@ const App = () => {
       ),
       mobileIcon: <HomeIcon />,
       state: { from: undefined, activePath: currentlyOnBaseUrl },
+      linkProp: {},
+      isExternal: false,
     },
     {
       label: "Proyectos",
-      path: projectsPath,
+      to: projectsPath,
       element: <Projects />,
       mobileIcon: <CollectionsBookmarkIcon />,
       state: { from: pathname, activePath: pathname === projectsPath },
+      linkProp: {},
+      isExternal: false,
     },
     {
       label: "Mi CV",
-      path: cvPath,
-      element: <Page3 />,
+      to: cvPath,
       mobileIcon: <ContactPageIcon />,
       state: { from: pathname, activePath: pathname === cvPath },
+      linkProp: { target: "_blank" },
+      isExternal: true,
     },
   ];
 
