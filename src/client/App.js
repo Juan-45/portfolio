@@ -4,10 +4,10 @@ import Welcome from "components/Welcome";
 import Home from "pages/Home";
 import Projects from "pages/Projects";
 import PageContainer from "layout/PageContainer";
-import ScrollToTop from "components/ScrollToTop";
 import HomeIcon from "@mui/icons-material/Home";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
+import ScrollToTop from "components/ScrollToTop";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "theme/theme";
 import { useState } from "react";
@@ -67,13 +67,14 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme injectFirst />
-      <MainContainer>
-        <PageContainer hide={hideNavAndFooter} routesOptions={routesOptions}>
-          <ScrollToTop />
-          <PageRender routesOptions={routesOptions} />
-        </PageContainer>
-      </MainContainer>
+      <ScrollToTop>
+        <CssBaseline enableColorScheme injectFirst />
+        <MainContainer>
+          <PageContainer hide={hideNavAndFooter} routesOptions={routesOptions}>
+            <PageRender routesOptions={routesOptions} />
+          </PageContainer>
+        </MainContainer>
+      </ScrollToTop>
     </ThemeProvider>
   );
 };
