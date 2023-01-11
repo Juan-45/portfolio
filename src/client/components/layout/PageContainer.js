@@ -10,7 +10,7 @@ const PageContainer = ({ children, hide, routesOptions }) => {
     label: item.label,
     state: item.state,
     mobileIcon: item.mobileIcon,
-    linkProp: item.linkProp,
+    anchorProp: item.anchorProp,
     isExternal: item.isExternal,
   }));
 

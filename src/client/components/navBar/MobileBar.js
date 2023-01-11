@@ -42,9 +42,8 @@ const MobileBar = ({ navigationOptions }) => {
               state={item.state}
               active={item.state.activePath}
               onClick={openingHandler}
-              target={item.linkProp.target}
               isExternal={item.isExternal}
-              {...item.linkProp}
+              {...item.anchorProp}
             />
           ))}
         </List>

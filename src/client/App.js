@@ -3,8 +3,6 @@ import PageRender from "components/PageRender";
 import Welcome from "components/Welcome";
 import Home from "pages/Home";
 import Projects from "pages/Projects";
-import Page2 from "pages/Page2";
-import Page3 from "pages/Page3";
 import PageContainer from "layout/PageContainer";
 import ScrollToTop from "components/ScrollToTop";
 import HomeIcon from "@mui/icons-material/Home";
@@ -45,7 +43,7 @@ const App = () => {
       ),
       mobileIcon: <HomeIcon />,
       state: { from: undefined, activePath: currentlyOnBaseUrl },
-      linkProp: {},
+      anchorProp: {},
       isExternal: false,
     },
     {
@@ -54,7 +52,7 @@ const App = () => {
       element: <Projects />,
       mobileIcon: <CollectionsBookmarkIcon />,
       state: { from: pathname, activePath: pathname === projectsPath },
-      linkProp: {},
+      anchorProp: {},
       isExternal: false,
     },
     {
@@ -62,12 +60,11 @@ const App = () => {
       to: cvPath,
       mobileIcon: <ContactPageIcon />,
       state: { from: pathname, activePath: pathname === cvPath },
-      linkProp: { target: "_blank" },
+      anchorProp: { target: "_blank" },
       isExternal: true,
     },
   ];
 
-  //console.log("THEME", theme);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme injectFirst />
