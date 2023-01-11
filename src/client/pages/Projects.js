@@ -6,8 +6,10 @@ import preview3 from "assets/images/projects/preview3.png";
 
 const Projects = () => {
   return (
-    <FlexColumn sx={{ overflow: "hidden", alignItems: "end" }}>
-      <Box
+    <FlexColumn sx={{ overflow: "hidden" /*alignItems: "end"*/ }}>
+      <Typography variant='h1'>En desarrollo</Typography>
+
+      {/* <Box
         sx={{
           marginTop: "180px",
 
@@ -71,7 +73,7 @@ const Projects = () => {
         >
           <Typography variant='h1'> Test</Typography>
         </Box>
-      </Box>
+        </Box>*/}
     </FlexColumn>
   );
 };
