@@ -4,6 +4,7 @@ import Background from "./Background";
 import background from "assets/images/footer/backgroundFooter.jpg";
 import { Typography, Link, Grid } from "@mui/material";
 import { theme } from "theme/theme";
+import cvPath from "assets/cv/CV 2023.pdf";
 
 const Column_6_4 = ({ children }) => (
   <Grid item xs={6} sm={4} container direction='column' alignItems='start'>
@@ -46,22 +47,24 @@ const Footer = () => {
       <Background background={background} />
       <PaperContainer sx={{ marginBottom: "50px", width: "100%" }}>
         <RowContainer>
-          <Column_6_4>
+          <Column_6>
             <Header>Contáctame</Header>
             <Link href='https://www.linkedin.com/in/juan-jos%C3%A9-herrera-8a10201a8/'>
               Mi perfil Linkedin
             </Link>
-            <Link>Envíame un e-mail</Link>
-          </Column_6_4>
-          <Column_6_4>
+            {/* <Link>Envíame un e-mail</Link>*/}
+          </Column_6>
+          {/* <Column_6_4>
             <Header>GitHub</Header>
             <Link>Mi cuenta</Link>
-            <Link>Respositorio de este portfolio</Link>
-          </Column_6_4>
-          <Column_6_4>
+           <Link>Respositorio de este portfolio</Link>
+    </Column_6_4>*/}
+          <Column_6>
             <Header>Mi CV</Header>
-            <Link>Descargar</Link>
-          </Column_6_4>
+            <Link href={cvPath} target='_blank'>
+              Visualizar
+            </Link>
+          </Column_6>
         </RowContainer>
       </PaperContainer>
       <PaperContainer sx={{ width: "100%" }}>
