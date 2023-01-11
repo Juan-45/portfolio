@@ -9,12 +9,9 @@ import wolf from "assets/images/home/presentation/Wolf.jpg";
 import background from "assets/images/home/backgroundHome.jpeg";
 import { theme } from "theme/theme";
 
-const { keyFramesGroup, fadeInAnimation, fadeInStyles, initialAnimationCss } =
-  theme;
+const { keyFramesGroup, fadeInStyles } = theme;
 
-const { fadeIn } = initialAnimationCss;
-
-const { growingBorder } = keyFramesGroup;
+const { growingBorder, fade } = keyFramesGroup;
 
 const { bottomBorder, rightBorder, leftBorder, topBorder, allBorders } =
   growingBorder;
@@ -30,19 +27,19 @@ const PhotoContainer = () => (
       "&::after": {
         //2do
         [theme.breakpoints.down("sm")]: {
-          animation: `${rightBorder.down} ${movingBorderTime}s 1s forwards linear`,
+          animation: `${movingBorderTime}s linear 1s forwards ${rightBorder.down}`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toRight} ${movingBorderTime}s 1.1s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.1s forwards ${bottomBorder.toRight}`,
         },
       },
       "&::before": {
         //3ro
         [theme.breakpoints.down("sm")]: {
-          animation: `${bottomBorder.toLeft} ${movingBorderTime}s 1.3s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.3s forwards ${bottomBorder.toLeft}`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${rightBorder.up} ${movingBorderTime}s 1.3s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.3s forwards ${rightBorder.up}`,
         },
       },
     }}
@@ -71,16 +68,16 @@ const SideTextContainer = ({ children }) => (
       "&::after": {
         //4to
         [theme.breakpoints.down("sm")]: {
-          animation: `${leftBorder.down} ${movingBorderTime}s 1.6s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.6s forwards ${leftBorder.down}`,
         },
         [theme.breakpoints.up("sm")]: {
-          animation: `${topBorder.toRight} ${movingBorderTime}s 1.6s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.6s forwards ${topBorder.toRight}`,
         },
       },
       "&::before": {
         //5to
         [theme.breakpoints.up("sm")]: {
-          animation: `${bottomBorder.toLeft} ${movingBorderTime}s 1.9s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.9s forwards ${bottomBorder.toLeft}`,
         },
       },
     }}
@@ -96,7 +93,7 @@ const BottomTextContainer = ({ children }) => (
     sx={{
       "&::after": {
         [theme.breakpoints.down("sm")]: {
-          animation: `${topBorder.toRight} ${movingBorderTime}s 1.9s forwards linear`,
+          animation: `${movingBorderTime}s linear 1.9s forwards ${topBorder.toRight}`,
         },
       },
     }}
@@ -111,11 +108,9 @@ const Container = ({ children }) => (
     <PaperContainer
       sx={{
         border: "2px solid #fff0",
-        ...fadeIn,
-        //1ro y 6to
-        animation: `${fadeInAnimation["0.5"](
-          0.5
-        )}, ${allBorders} 2s 2.2s forwards ease`,
+        opacity: "0",
+        visibility: "hidden",
+        animation: `0.5s cubic-bezier(0.11, 0, 0.5, 0) 0.5s forwards ${fade}, 2s ease 2.2s forwards ${allBorders}`,
       }}
     >
       {children}
@@ -125,27 +120,32 @@ const Container = ({ children }) => (
 
 const Presentation = () => {
   return (
-    <Container>
-      <Grid container>
-        <PhotoContainer />
-        <SideTextContainer>
-          <AnimatedH1 str='Saludos' initialDelay={1} />
-          <FadeInScaleBody delay={1.7} sx={{ marginRight: "-4px" }}>
-            Soy un desarrollador front-end y este es mi primer portfolio,
-            disfruto de encontrar soluciones simples y de lograr diseños bellos.
-            Con cada proyecto me exijo en incorporar cosas nuevas y en que mí
-            código sea más claro, más directo, sencillamente mejor.
-          </FadeInScaleBody>
-        </SideTextContainer>
-        <BottomTextContainer>
-          <AnimatedH1 str='Mi objetivo' initialDelay={2.2} />
-          <FadeInScaleBody delay={3.3}>
-            Trabajar en un equipo de programadores profesionales para ponerme a
-            prueba y acelerar mi aprendizaje.
-          </FadeInScaleBody>
-        </BottomTextContainer>
-      </Grid>
-    </Container>
+    <>
+      <Container>
+        <Grid container>
+          <PhotoContainer />
+          <SideTextContainer>
+            <AnimatedH1 str='Desarrollador fron-end' initialDelay={1} />
+            <FadeInScaleBody delay={1.7}>
+              Cada nuevo proyecto debe ser un desafío, y así, un paso más cerca
+              al siguiente nivel.
+            </FadeInScaleBody>
+            <FadeInScaleBody variant='caption' delay={1.9}>
+              Juan José Herrera
+            </FadeInScaleBody>
+          </SideTextContainer>
+          <BottomTextContainer>
+            <AnimatedH1 str='Mi objetivo' initialDelay={2.2} />
+            <FadeInScaleBody delay={2.9}>
+              Trabajar en un equipo de programadores profesionales, aportando
+              para el cumplimiento de los objetivos del equipo y aprovechando la
+              experiencia de sus integrantes para acelerar mi propio aprendizaje
+              en continuidad.
+            </FadeInScaleBody>
+          </BottomTextContainer>
+        </Grid>
+      </Container>
+    </>
   );
 };
 

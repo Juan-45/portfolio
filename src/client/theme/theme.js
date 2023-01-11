@@ -73,64 +73,64 @@ const palette = {
 #################   ANIMATIONS   #################
 */
 
-const initialAnimationCss = {
-  fadeIn: { opacity: "0", visibility: "hidden" },
-  scale: {
-    transform: "scale(0.94)",
-  },
-};
-
 /*
-#####   FADEIN   #####
+#####   fadeIn   #####
 */
 
 const fade = keyframes({
   from: {
+    opacity: "0",
+    visibility: "hidden",
     filter: "blur(4px)",
   },
   to: {
     opacity: "1",
-    visibility: "unset",
+    visibility: "visible",
     filter: "blur(0)",
   },
 });
 
-const getFadeInAnimation = (duration, delay) =>
-  `${fade} ${duration}s ${delay}s forwards cubic-bezier(0.11, 0, 0.5, 0)`;
-
 const getFadeInStyle = (duration, delay) => ({
-  ...initialAnimationCss.fadeIn,
-  animation: getFadeInAnimation(duration, delay),
+  opacity: "0",
+  visibility: "hidden",
+  animation: `${duration}s cubic-bezier(0.11, 0, 0.5, 0) ${delay}s forwards ${fade}`,
 });
 
+const fadeInStyles = {
+  0.2: (delay) => getFadeInStyle(0.2, delay),
+  0.5: (delay) => getFadeInStyle(0.5, delay),
+  1: (delay) => getFadeInStyle(1, delay),
+};
+
 /*
-#####   SCALE   #####
+#####   scale   #####
 */
 
 const scale = keyframes({
-  from: {},
+  from: { transform: "scale(0.94)" },
   to: {
     transform: "scale(1)",
   },
 });
 
-const getScaleAnimation = (duration, delay) =>
-  `${scale} ${duration}s ${delay}s forwards cubic-bezier(0.5, 1, 0.89, 1)`;
-
-const getScaleStyle = (duration) => ({
-  ...initialAnimationCss.scale,
-  animation: getScaleAnimation(duration),
+const getScaleStyle = (duration, delay) => ({
+  transform: "scale(0.94)",
+  animation: `${duration}s cubic-bezier(0.5, 1, 0.89, 1) ${delay}s forwards ${scale}`,
 });
 
-const fadeInAnimation = {
-  0.2: (delay) => getFadeInAnimation(0.2, delay),
-  0.5: (delay) => getFadeInAnimation(0.5, delay),
-  1: (delay) => getFadeInAnimation(1, delay),
-};
+/*
+fadeInScale 
+*/
 
-const fadeInStyles = {
-  0.5: (delay) => getFadeInStyle(0.5, delay),
-  1: (delay) => getFadeInStyle(1, delay),
+const getFadeInScaleStyle = (scaleDuration, fadeInDuration, delay) => ({
+  opacity: "0",
+  visibility: "hidden",
+  transform: "scale(0.94)",
+  animation: `${scaleDuration}s cubic-bezier(0.5, 1, 0.89, 1) ${delay}s forwards ${scale}, ${fadeInDuration}s cubic-bezier(0.11, 0, 0.5, 0) ${delay}s forwards ${fade}`,
+});
+
+const fadeInScaleStyle = {
+  "0.5-1": (delay) => getFadeInScaleStyle(0.5, 1, delay),
 };
 
 /*
@@ -305,15 +305,15 @@ const common = {
 
   keyFramesGroup,
 
-  initialAnimationCss,
-
-  fadeInAnimation,
   fadeInStyles,
-  getFadeInAnimation,
+
   getFadeInStyle,
 
-  getScaleAnimation,
   getScaleStyle,
+
+  getFadeInScaleStyle,
+
+  fadeInScaleStyle,
 
   getHoverGlowingStyle,
 

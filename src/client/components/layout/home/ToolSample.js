@@ -17,17 +17,13 @@ import babel from "assets/images/home/toolsSample/babel.svg";
 import github from "assets/images/home/toolsSample/github.svg";
 import vsc from "assets/images/home/toolsSample/vsc.svg";
 import vs from "assets/images/home/toolsSample/vs.svg";
-
 import { theme } from "theme/theme";
 import { keyframes } from "@mui/styled-engine";
-
 import useTriggerOnScroll from "hooks/useTriggerOnScroll";
 
-const { keyFramesGroup, fadeInAnimation, initialAnimationCss } = theme;
+const { keyFramesGroup } = theme;
 
-const { fadeIn } = initialAnimationCss;
-
-const { growingBorder } = keyFramesGroup;
+const { growingBorder, fade } = keyFramesGroup;
 
 const { bottomBorder, rightBorder, leftBorder, allBorders } = growingBorder;
 
@@ -75,13 +71,13 @@ const TextContainer = ({ children, triggerAnimation }) => (
       "&::after": {
         //2do
         animation: triggerAnimation
-          ? `${leftBorder.down} ${movingBorderTime}s 0.3s forwards linear`
+          ? `${movingBorderTime}s linear 0.3s forwards ${leftBorder.down}`
           : "unset",
       },
       "&::before": {
         //3ro
         animation: triggerAnimation
-          ? `${bottomBorder.toRight} ${movingBorderTime}s 0.6s forwards linear`
+          ? `${movingBorderTime}s linear 0.6s forwards ${bottomBorder.toRight}`
           : "unset",
       },
     }}
@@ -96,10 +92,11 @@ const Contianer = React.forwardRef(({ children, triggerAnimation }, ref) => (
       ref={ref}
       sx={{
         border: "2px solid #fff0",
-        ...fadeIn,
+        opacity: "0",
+        visibility: "hidden",
         //1ro y 5to
         animation: triggerAnimation
-          ? `${fadeInAnimation["0.2"](0)}, ${allBorders} 2s 1.2s forwards ease`
+          ? `0.2s cubic-bezier(0.11, 0, 0.5, 0) 0s forwards ${fade}, 2s ease 1.2s forwards ${allBorders}`
           : "unset",
       }}
     >
@@ -133,9 +130,14 @@ const Carousel = ({ triggerAnimation }) => (
         width: `calc(100% - ${theme.spacing(4)})`,
         height: `calc(100% - ${theme.spacing(2)})`,
         bottom: "0",
-        ...fadeIn,
+
+        opacity: "0",
+        visibility: "hidden",
         //2doA
-        animation: triggerAnimation ? `${fadeInAnimation["1"](1.3)}` : "unset",
+        animation: triggerAnimation
+          ? `1s cubic-bezier(0.11, 0, 0.5, 0) 1.3s forwards ${fade}`
+          : "unset",
+
         "&::before, &::after": {
           content: "''",
           position: "absolute",
