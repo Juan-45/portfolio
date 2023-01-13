@@ -7,6 +7,7 @@ const PaperContainer = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   borderRadius: "0px",
   maxWidth: "900px",
+  width: "100%",
 }));
 
 export default PaperContainer;

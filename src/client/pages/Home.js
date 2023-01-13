@@ -1,11 +1,11 @@
-import Presentation from "layout/home/Presentation";
-import ToolSample from "layout/home/ToolSample";
+import Header from "layout/home/Header";
+import Body from "layout/home/Body";
 
 const Home = () => {
   return (
     <>
-      <Presentation />
-      <ToolSample />
+      <Header />
+      <Body />
     </>
   );
 };

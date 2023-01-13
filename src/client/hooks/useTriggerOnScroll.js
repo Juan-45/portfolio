@@ -26,10 +26,7 @@ const useTriggerOnScroll = () => {
     };
   }, []);
 
-  return {
-    targetEl,
-    trigger,
-  };
+  return [targetEl, trigger];
 };
 
 export default useTriggerOnScroll;

@@ -324,7 +324,8 @@ const common = {
       tablet_min_600: 600,
       mobile_max_750: 750,
       mobile_max_599: 599.95,
-      lg: 1280,
+      lg: 1200,
+      md: 751,
       sm: 600,
       xs: 0,
     },
@@ -370,6 +371,7 @@ const common = {
     },
     subtitle1: {
       lineHeight: 1.5,
+      fontWeight: 600,
       [tablet_min_600]: {
         fontSize: "1.2rem",
       },

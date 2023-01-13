@@ -5,7 +5,14 @@ import { getStyleOnCondition } from "helpers/getStyleOnCondition";
 
 const { getHoverGlowingStyle } = theme;
 
-const AnimatedH1 = ({ type, str, initialDelay, triggerAnimation }) => {
+const AnimatedH1 = ({
+  type,
+  str,
+  initialDelay,
+  triggerAnimation,
+  sx,
+  ...props
+}) => {
   return (
     <FadeInText
       str={str}
@@ -18,7 +25,9 @@ const AnimatedH1 = ({ type, str, initialDelay, triggerAnimation }) => {
         fontFamily: "Kaushan",
         ...getStyleOnCondition(triggerAnimation, getHoverGlowingStyle),
         width: "fit-content",
+        ...sx,
       }}
+      {...props}
     />
   );
 };

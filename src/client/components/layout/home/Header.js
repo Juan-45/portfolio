@@ -5,7 +5,7 @@ import Background from "layout/Background";
 import FlexColumn from "layout/FlexColumn";
 import GridForAnimation from "layout/home/GridForAnimation";
 import { Grid, Box } from "@mui/material";
-import wolf from "assets/images/home/presentation/Wolf.jpg";
+import wolf from "assets/images/home/header/Wolf.jpg";
 import background from "assets/images/home/backgroundHome.jpeg";
 import { theme } from "theme/theme";
 
@@ -118,14 +118,14 @@ const Container = ({ children }) => (
   </FlexColumn>
 );
 
-const Presentation = () => {
+const Header = () => {
   return (
     <>
       <Container>
         <Grid container>
           <PhotoContainer />
           <SideTextContainer>
-            <AnimatedH1 str='Desarrollador fron-end' initialDelay={1} />
+            <AnimatedH1 str='Desarrollador front-end' initialDelay={1} />
             <FadeInScaleBody delay={1.7}>
               Cada nuevo proyecto debe ser un desafío, y así, un paso más cerca
               al siguiente nivel.
@@ -149,4 +149,4 @@ const Presentation = () => {
   );
 };
 
-export default Presentation;
+export default Header;

@@ -13,6 +13,7 @@ const FadeInText = ({
   type,
   sx,
   triggerAnimation,
+  ...props
 }) => {
   const { getFadeInStyle } = theme;
 
@@ -42,7 +43,7 @@ const FadeInText = ({
   });
 
   return (
-    <Typography variant={variant} sx={sx}>
+    <Typography variant={variant} sx={sx} {...props}>
       {spans}
     </Typography>
   );
