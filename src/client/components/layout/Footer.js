@@ -74,6 +74,9 @@ const Footer = () => {
             <Link href='https://www.freepik.com/free-vector/watercolor-chinese-style-illustration_32052359.htm#query=traditional%20chinese%20painting&position=7&from_view=keyword'>
               Freepik - Image by @freepik
             </Link>
+            <Link href='https://www.freepik.com/free-vector/hand-drawn-wolf-face_1165745.htm#page=2&query=wolf%20protrait&position=7&from_view=search&track=ais'>
+              Freepik - Image by @freepik
+            </Link>
             <Link href='https://www.freepik.com/free-vector/flower-vector-botanical-art-print-remixed-from-artworks-by-hu-zhengyan_16354264.htm#query=traditional%20chinese%20painting&position=15&from_view=keyword'>
               Freepik - Image by rawpixel.com
             </Link>
