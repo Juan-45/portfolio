@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import PaperContainer from "layout/PaperContainer";
 import { theme } from "theme/theme";
+import React from "react";
 
 const { keyFramesGroup } = theme;
 

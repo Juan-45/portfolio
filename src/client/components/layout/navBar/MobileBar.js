@@ -98,7 +98,6 @@ const getStyles = ({ theme, active }) => ({
     background: theme.palette.glow.dark,
     transition: "width 0.6s ease, box-shadow 0.6s ease",
     height: "1px",
-    width: "0%",
     bottom: 0,
     boxShadow: active ? theme.glow.small : "unset",
     width: active ? "50%" : "0%",

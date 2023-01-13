@@ -10,6 +10,7 @@ import { styled } from "@mui/material/styles";
 import { getStyleOnCondition } from "helpers/getStyleOnCondition";
 import useTriggerOnScroll from "hooks/useTriggerOnScroll";
 import { theme } from "theme/theme";
+import React from "react";
 
 const { keyFramesGroup, fadeInStyles } = theme;
 

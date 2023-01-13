@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Quote from "components/layout/Quote";
+import Quote from "layout/Quote";
 import Span from "layout/Span";
 import { theme } from "theme/theme";
 import { getKey } from "helpers/manageReactKey";
